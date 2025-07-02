@@ -2,8 +2,9 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil</title>
-    <link rel="stylesheet" href="/stylesheets/Dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
 </head>
 <body>
 <div class="container">
@@ -12,24 +13,46 @@
             <h1>Perfil de <%= usuario.nome %></h1>
         </div>
          <div class="header-actions">
-            <a href="/dashboard-utilizador" class="btn-secondary">Voltar ao Dashboard</a>
+            <a href="/dashboard-utilizador" class="btn btn-secondary">Voltar ao Dashboard</a>
         </div>
     </header>
 
-    <div class="dwarves-section" style="background-color: #c6b8a3; color: #3d2b1f;">
-        <form action="/perfil" method="POST" style="max-width: 600px; margin: auto;">
-            <label>Nome:</label><input type="text" name="nome" value="<%= anao.nome %>" required>
-            <label>Descrição:</label><textarea name="descricao"><%= anao.descricao %></textarea>
-            <label>Idade:</label><input type="number" name="idade" value="<%= anao.idade %>">
-            <label>Altura:</label><input type="number" step="0.01" name="altura" value="<%= anao.altura %>">
-            <label>Peso:</label><input type="number" step="0.1" name="peso" value="<%= anao.peso %>">
-            <label>URL da Foto:</label><input type="text" name="url_foto" value="<%= anao['url-foto'] %>">
-            <label>Status:</label>
-            <select name="status">
-                <option value="ativo" <%= anao.status === 'ativo' ? 'selected' : '' %>>Ativo</option>
-                <option value="inativo" <%= anao.status === 'inativo' ? 'selected' : '' %>>Inativo</option>
-            </select>
-            <button type="submit" class="btn-primary">Salvar Alterações</button>
+    <div class="form-container" style="max-width: 700px; margin: auto;">
+        <h2>Suas Informações</h2>
+        <form action="/perfil" method="POST">
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" value="<%= anao.nome %>" required>
+            </div>
+            <div>
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" rows="4"><%= anao.descricao || '' %></textarea>
+            </div>
+            <div>
+                <label for="idade">Idade:</label>
+                <input type="number" id="idade" name="idade" value="<%= anao.idade || '' %>">
+            </div>
+            <div>
+                <label for="altura">Altura (metros):</label>
+                <input type="number" id="altura" step="0.01" name="altura" value="<%= anao.altura || '' %>">
+            </div>
+            <div>
+                <label for="peso">Peso (kg):</label>
+                <input type="number" id="peso" step="0.1" name="peso" value="<%= anao.peso || '' %>">
+            </div>
+            <div>
+                <label for="url_foto">URL da Foto:</label>
+                <input type="text" id="url_foto" name="url_foto" value="<%= anao['url-foto'] || '' %>">
+            </div>
+            <div>
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="ativo" <%= anao.status === 'ativo' ? 'selected' : '' %>>Ativo (Visível para aluguel)</option>
+                    <option value="inativo" <%= anao.status === 'inativo' ? 'selected' : '' %>>Inativo (Não visível para aluguel)</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Salvar Alterações</button>
         </form>
     </div>
 </div>

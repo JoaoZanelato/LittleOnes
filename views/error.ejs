@@ -1,3 +1,27 @@
 <h1><%= message %></h1>
 <h2><%= error.status %></h2>
 <pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ocorreu um Erro</title>
+  <link rel='stylesheet' href='/stylesheets/main.css' />
+</head>
+<body class="centered-body">
+
+<div class="form-container error-container">
+    <h1><%= message %></h1>
+    <h2><%= error.status %></h2>
+    <p>Houve um problema ao processar sua solicitação. Tente novamente mais tarde.</p>
+    
+    <% if (process.env.NODE_ENV === 'development') { %>
+      <pre><%= error.stack %></pre>
+    <% } %>
+
+    <a href="/" class="btn btn-primary" style="margin-top: 20px;">Voltar para a Página Inicial</a>
+</div>
+
+</body>
+</html>

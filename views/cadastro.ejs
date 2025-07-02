@@ -2,42 +2,72 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro e Login</title>
-    <link rel="stylesheet" href="/stylesheets/Dashboard.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo ao LittleOnes</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <style>
+        /* Estilos específicos para alternar formulários */
+        .form-toggle {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-toggle-btn {
+            background: none;
+            border: none;
+            color: #800000;
+            text-decoration: underline;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+        }
+        #register-form { display: none; }
+    </style>
 </head>
-<body>
-<div class="container">
-    <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+<body class="centered-body">
 
-        <div style="flex: 1; min-width: 300px; margin: 20px;">
-            <h2>Cadastro</h2>
-            <form action="/cadastro" method="POST">
-                <input type="text" name="nome" placeholder="Nome Completo" required><br><br>
-                <input type="email" name="email" placeholder="Email" required><br><br>
-                <input type="password" name="senha" placeholder="Senha" required><br><br>
-                <input type="text" name="cpf" placeholder="CPF" required><br><br>
-                <input type="text" name="telefone" placeholder="Telefone"><br><br>
-                <select name="cliente_ou_utilizador" required>
-                    <option value="" disabled selected>Selecione o tipo de conta</option>
-                    <option value="comprador">Quero alugar (Comprador)</option>
-                    <option value="utilizador">Quero ser alugado (Utilizador)</option>
-                </select><br><br>
-                <button type="submit" class="btn-primary">Cadastrar</button>
-            </form>
-        </div>
+<div class="form-container">
+    <div id="login-form">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <% if (typeof error !== 'undefined' && error) { %>
+                <p style="color: red; text-align: center; margin-bottom: 15px;"><%= error %></p>
+            <% } %>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
+            <div class="form-toggle">
+                <button type="button" id="show-register-btn" class="form-toggle-btn">Não tem uma conta? Cadastre-se</button>
+            </div>
+        </form>
+    </div>
 
-        <div style="flex: 1; min-width: 300px; margin: 20px;">
-            <h2>Login</h2>
-            <form action="/login" method="POST">
-                <input type="email" name="email" placeholder="Email" required><br><br>
-                <input type="password" name="senha" placeholder="Senha" required><br><br>
-                <% if (error) { %>
-                    <p style="color: red;"><%= error %></p>
-                <% } %>
-                <button type="submit" class="btn-primary">Entrar</button>
-            </form>
-        </div>
+    <div id="register-form">
+        <h2>Cadastro</h2>
+        <form action="/cadastro" method="POST">
+            <input type="text" name="nome" placeholder="Nome Completo" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <input type="text" name="cpf" placeholder="CPF" required>
+            <input type="text" name="telefone" placeholder="Telefone">
+            <select name="cliente_ou_utilizador" required>
+                <option value="" disabled selected>Selecione o tipo de conta</option>
+                <option value="comprador">Quero alugar (Comprador)</option>
+                <option value="utilizador">Quero ser alugado (Utilizador)</option>
+            </select>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Cadastrar</button>
+            <div class="form-toggle">
+                <button type="button" id="show-login-btn" class="form-toggle-btn">Já tem uma conta? Faça o login</button>
+            </div>
+        </form>
     </div>
 </div>
+
+<script>
+    const loginForm = document.getElementById('login-form'), registerForm = document.getElementById('register-form');
+    const showRegisterBtn = document.getElementById('show-register-btn'), showLoginBtn = document.getElementById('show-login-btn');
+    showRegisterBtn.addEventListener('click', () => { loginForm.style.display = 'none'; registerForm.style.display = 'block'; });
+    showLoginBtn.addEventListener('click', () => { loginForm.style.display = 'block'; registerForm.style.display = 'none'; });
+</script>
+
 </body>
 </html>
