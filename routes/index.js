@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const pool = require('../config/db'); // Importa a conexão com o banco de dados
+const bcrypt = require('bcryptjs'); // Importa a biblioteca para criptografia
 
 // Página inicial
 router.get('/', function(req, res, next) {
@@ -20,6 +21,60 @@ router.get('/login', function(req, res) {
 // Página principal após login
 router.get('/pagina', function(req, res) {
   res.render('pagina', { title: 'Página Principal' });
+});
+
+// Rota para processar o formulário de cadastro com senha criptografada
+router.post('/cadastro', async function(req, res) {
+  const { nome, cliente_ou_utilizador, email, senha, cpf, telefone } = req.body;
+
+  try {
+    // Gera um "sal" e cria o hash da senha
+    const salt = await bcrypt.genSalt(10);
+    const hashSenha = await bcrypt.hash(senha, salt);
+
+    const sql = "INSERT INTO usuarios (nome, cliente_ou_utilizador, email, senha, cpf, telefone, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";
+
+    // Salva o hash da senha no banco de dados, e não a senha original
+    await pool.query(sql, [nome, cliente_ou_utilizador, email, hashSenha, cpf, telefone]);
+
+    res.redirect('/login');
+  } catch (error) {
+    console.error("Erro no cadastro:", error);
+    res.render('error', { message: 'Erro ao realizar o cadastro', error });
+  }
+});
+
+// Rota para processar o formulário de login com verificação de senha criptografada
+router.post('/login', async function(req, res) {
+  const { email, senha } = req.body;
+
+  try {
+    const sql = "SELECT * FROM usuarios WHERE email = ?";
+    const [rows] = await pool.query(sql, [email]);
+
+    if (rows.length > 0) {
+      const usuario = rows[0];
+
+      // Compara a senha fornecida com o hash salvo no banco de dados
+      const match = await bcrypt.compare(senha, usuario.senha);
+
+      if (match) {
+        // A senha corresponde! Inicie a sessão do usuário.
+        // (Aqui você implementaria a lógica de sessão, ex: com express-session)
+        // req.session.usuario = usuario;
+        res.redirect('/dashboard');
+      } else {
+        // A senha está incorreta
+        res.render('login', { title: 'Login', error: 'Email ou senha inválidos' });
+      }
+    } else {
+      // O usuário não foi encontrado
+      res.render('login', { title: 'Login', error: 'Email ou senha inválidos' });
+    }
+  } catch (error) {
+    console.error("Erro no login:", error);
+    res.render('error', { message: 'Erro ao realizar o login', error });
+  }
 });
 
 // Rota do Dashboard com SQL puro
