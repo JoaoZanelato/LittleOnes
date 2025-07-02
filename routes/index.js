@@ -3,16 +3,10 @@ var router = express.Router();
 const pool = require('../config/db'); // Importa a conexão com o banco de dados
 const bcrypt = require('bcryptjs'); // Importa a biblioteca para criptografia
 
-// Página inicial
+// Página inicial (que já é a de cadastro/login)
 router.get('/', function(req, res, next) {
-  res.render('cadastro');
+  res.render('cadastro', { error: null }); // Renderiza a página principal
 });
-
-// Página de login
-router.get('/login', function(req, res) {
-  res.render('login', { title: 'Login' });
-});
-
 
 // Rota para processar o formulário de cadastro com senha criptografada
 router.post('/cadastro', async function(req, res) {
@@ -28,7 +22,8 @@ router.post('/cadastro', async function(req, res) {
     // Salva o hash da senha no banco de dados, e não a senha original
     await pool.query(sql, [nome, cliente_ou_utilizador, email, hashSenha, cpf, telefone]);
 
-    res.redirect('/login');
+    // Redireciona para a página principal para que o usuário possa fazer login
+    res.redirect('/');
   } catch (error) {
     console.error("Erro no cadastro:", error);
     res.render('error', { message: 'Erro ao realizar o cadastro', error });
@@ -50,17 +45,17 @@ router.post('/login', async function(req, res) {
       const match = await bcrypt.compare(senha, usuario.senha);
 
       if (match) {
-        // A senha corresponde! Inicie a sessão do usuário.
-        // (Aqui você implementaria a lógica de sessão, ex: com express-session)
+        // A senha corresponde! Redireciona para o dashboard.
+        // Aqui você pode implementar a lógica de sessão, ex: com express-session
         // req.session.usuario = usuario;
         res.redirect('/dashboard');
       } else {
         // A senha está incorreta
-        res.render('login', { title: 'Login', error: 'Email ou senha inválidos' });
+        res.render('cadastro', { error: 'Email ou senha inválidos' });
       }
     } else {
       // O usuário não foi encontrado
-      res.render('login', { title: 'Login', error: 'Email ou senha inválidos' });
+      res.render('cadastro', { error: 'Email ou senha inválidos' });
     }
   } catch (error) {
     console.error("Erro no login:", error);
@@ -68,7 +63,7 @@ router.post('/login', async function(req, res) {
   }
 });
 
-// Rota do Dashboard com SQL puro
+// Rota do Dashboard
 router.get('/dashboard', async function(req, res) {
   try {
     const [rows] = await pool.query('SELECT * FROM anoes'); // Executa a consulta SQL
