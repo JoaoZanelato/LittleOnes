@@ -31,7 +31,7 @@ router.get('/dashboard', function(req, res) {
 });
 
 router.get('/perfil', (req, res, next) =>{
-  res.rener('perfil')
+  res.render('perfil')
 })
 
 router.post('/perfil', (req, res, next) =>{
