@@ -1,40 +1,49 @@
-// Importa as dependências necessárias
-const Sequelize = require('sequelize');
-const dbConfig = require('../config/config.json'); // Caminho para seu arquivo de configuração do DB
+var express = require('express');
+var router = express.Router();
+const { Anao } = require('../models'); // Importe o seu modelo Anao
 
-// Importa todos os seus modelos
-const Usuario = require('./usuario');
-const Anao = require('./anao');
-const Endereco = require('./endereco');
-const CadastroCartao = require('./cadastro_cartao');
-const Pedidos = require('./pedidos');
-
-// Define qual ambiente de configuração será usado (desenvolvimento, teste ou produção)
-const env = process.env.NODE_ENV || 'development';
-const config = dbConfig[env];
-
-// Cria a instância de conexão com o banco de dados
-const connection = new Sequelize(config.database, config.username, config.password, {
-  host: config.host,
-  dialect: config.dialect,
-  // Outras configurações opcionais do Sequelize podem ir aqui
-  // Ex: logging: false, define: { timestamps: true }
+// Página inicial
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Página Inicial' });
 });
 
-// Inicializa cada modelo, passando a conexão do banco de dados
-Usuario.init(connection);
-Anao.init(connection);
-Endereco.init(connection);
-CadastroCartao.init(connection);
-Pedidos.init(connection);
+// Página de cadastro
+router.get('/cadastro', function(req, res) {
+  res.render('cadastro', { title: 'Cadastro' });
+});
 
-// Executa o método 'associate' de cada modelo, se ele existir
-// Isso é crucial para criar os relacionamentos (chaves estrangeiras)
-Object.values(connection.models)
-  .filter(model => typeof model.associate === 'function')
-  .forEach(model => model.associate(connection.models));
+// Página de login
+router.get('/login', function(req, res) {
+  res.render('login', { title: 'Login' });
+});
 
-console.log('Modelos inicializados e associados com sucesso!');
+// Página principal após login
+router.get('/pagina', function(req, res) {
+  res.render('pagina', { title: 'Página Principal' });
+});
 
-// Exporta a conexão para ser utilizada em outras partes da sua aplicação
-module.exports = connection;
+// Página de erro (opcional, normalmente usada para tratamento de erros)
+router.get('/erro', function(req, res) {
+  res.render('error', { message: 'Erro personalizado', error: {} });
+});
+
+// Rota do Dashboard atualizada
+router.get('/dashboard', async function(req, res) {
+  try {
+    const anoes = await Anao.findAll(); // Vai buscar todos os anões da base de dados
+    res.render('dashboard', { title: 'Dashboard', anoes: anoes }); // Passa os anões para a vista
+  } catch (error) {
+    console.error("Erro ao buscar anões:", error);
+    res.render('error', { message: 'Erro ao carregar os dados do dashboard', error: error });
+  }
+});
+
+router.get('/perfil', (req, res, next) =>{
+  res.rener('perfil')
+})
+
+router.post('/perfil', (req, res, next) =>{
+
+})
+
+module.exports = router;
