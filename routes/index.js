@@ -26,4 +26,8 @@ router.get('/erro', function(req, res) {
   res.render('error', { message: 'Erro personalizado', error: {} });
 });
 
+router.get('/dashboard', function(req, res) {
+  res.render('dashboard', { title: 'Dashboard' });
+});
+
 module.exports = router;
