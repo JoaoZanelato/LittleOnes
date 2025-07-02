@@ -17,22 +17,36 @@
       </div>
     </header>
 
-    <main class="dwarves-section">
-      <h2>Nossos Anões</h2>
-      <div class="card-container">
-        <% if (typeof anoes !== 'undefined' && anoes.length > 0) { %>
-          <% anoes.forEach(function(anao) { %>
-            <div class="dwarf-card">
-              <img src="<%= anao['url-foto'] %>" alt="Foto de <%= anao.nome %>">
-              <p><%= anao.nome %></p>
-              <a href="/perfil/<%= anao.id %>" class="btn-primary">Ver Perfil</a>
-            </div>
-          <% }); %>
-        <% } else { %>
-          <p>Nenhum anão encontrado.</p>
-        <% } %>
-      </div>
-    </main>
+        <section class="dwarves-section">
+            <h2>Anões Disponíveis</h2>
+            <div class="card-container">
+                <div class="dwarf-card">
+                    <img src="https://yt3.googleusercontent.com/ytc/AIdro_lEBV7MqZAVnwlJ9k9AxIoT9rEusrsQjnYCt11sCIwkK94=s900-c-k-c0x00ffffff-no-rj" alt="Anão 1">
+                    <p>Thorin Escudo de Carvalho</p>
+                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
+                <div class="dwarf-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRLZ_gAZNOC-xaw0DTIV11mWsLw6gAWZ36Yw&s" alt="Anão 2">
+                    <p>Gimli Filho de Glóin</p>
+                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
+                <div class="dwarf-card">
+                    <img src="https://p2.trrsf.com/image/fget/cf/1200/900/middle/images.terra.com/2023/06/16/leandrinha-1jei6hn0ftlk2.jpg" alt="Anão 3">
+                    <p>Balin, Senhor de Moria</p>
+                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
+                <div class="dwarf-card">
+                    <img src="https://www.gazetadigital.com.br/storage/webdisco/2019/10/25/1200x900/698e182eacdbc960a571dafb746b1773.jpg" alt="Anão 4">
+                    <p>Kili, Filho de Dís</p>
+                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
+                <div class="dwarf-card">
+                    <img src="https://pt.quizur.com/_image?href=https://img.quizur.com/f/img61900d0515c345.20872964.jpeg?lastEdited=1636830473&w=600&h=600&f=webp" alt="Anão 5">
+                    <p>Fili, Filho de Dís</p>
+                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
+                <div class="dwarf-card">
+                    <img src="https://odia.ig.com.br/_midias/jpg/2020/01/15/tokinhooficial_80679287_2547683448779561_6405182308624411958_n-15155733.jpg" alt="Anão 6">
+                    <p>Dwalin, o Anão</p>
+                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
+                </div>
+        </section>
+    </div>
 
     <footer>
       <p>&copy; 2025 LittleOnes. Todos os direitos reservados.</p>
