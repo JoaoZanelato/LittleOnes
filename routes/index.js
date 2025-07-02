@@ -5,12 +5,7 @@ const bcrypt = require('bcryptjs'); // Importa a biblioteca para criptografia
 
 // Página inicial
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Página Inicial' });
-});
-
-// Página de cadastro
-router.get('/cadastro', function(req, res) {
-  res.render('cadastro', { title: 'Cadastro' });
+  res.render('cadastro');
 });
 
 // Página de login
@@ -18,10 +13,6 @@ router.get('/login', function(req, res) {
   res.render('login', { title: 'Login' });
 });
 
-// Página principal após login
-router.get('/pagina', function(req, res) {
-  res.render('pagina', { title: 'Página Principal' });
-});
 
 // Rota para processar o formulário de cadastro com senha criptografada
 router.post('/cadastro', async function(req, res) {
