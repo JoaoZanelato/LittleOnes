@@ -30,4 +30,12 @@ router.get('/dashboard', function(req, res) {
   res.render('dashboard', { title: 'Dashboard' });
 });
 
+router.get('/perfil', (req, res, next) =>{
+  res.rener('perfil')
+})
+
+router.post('/perfil', (req, res, next) =>{
+
+})
+
 module.exports = router;
