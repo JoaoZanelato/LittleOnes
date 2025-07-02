@@ -1,0 +1,48 @@
+/* dashboard.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  h1 {
+    color: #2a4d69;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+  }
+  
+  h2 {
+    color: #4b7399;
+    margin-top: 30px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  ul li {
+    background-color: #ffffff;
+    margin: 8px 0;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+  }
+  
+  ul li:hover {
+    background-color: #eef2f7;
+  }
+  
+  a {
+    color: #2a7ae2;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
