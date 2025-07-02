@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+</head>
+<body>
+    <%- include('partials/header', { usuario: usuario }) %>
+    <div class="container payment-section">
+        <h2>Finalizar Aluguel</h2>
+
+        <% if (error) { %>
+            <p style="color: red;"><%= error %></p>
+        <% } %>
+
+        <form action="/pagamento/finalizar" method="POST" class="form-container" style="margin: 0 auto 40px auto;">
+            <h3>1. Selecione o Cartão</h3>
+            <% if (cartoes.length > 0) { %>
+                <% cartoes.forEach(function(cartao) { %>
+                    <div>
+                        <input type="radio" name="id_cartao" value="<%= cartao.id %>" id="cartao-<%= cartao.id %>" required>
+                        <label for="cartao-<%= cartao.id %>">Cartão final **** <%= cartao.num_card.slice(-4) %></label>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>Nenhum cartão cadastrado. Adicione um abaixo.</p>
+            <% } %>
+
+            <h3 style="margin-top: 30px;">2. Duração do Aluguel</h3>
+             <label for="tempo_aluguel">Por quantos dias você precisa do nosso amigo?</label>
+             <select name="tempo_aluguel" id="tempo_aluguel" required>
+                <option value="7">7 dias</option>
+                <option value="15">15 dias</option>
+                <option value="30">30 dias</option>
+             </select>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Confirmar Aluguel</button>
+        </form>
+
+        <hr>
+
+        <div class="form-container" style="margin: 40px auto 0 auto;">
+            <h3>Adicionar Novo Cartão</h3>
+            <form action="/pagamento/cadastrar-cartao" method="POST">
+                <label for="num_card">Número do Cartão</label>
+                <input type="text" name="num_card" required>
+                <label for="validade">Validade (MM/AA)</label>
+                <input type="text" name="validade" required>
+                <label for="cvv">CVV</label>
+                <input type="text" name="cvv" required>
+                <button type="submit" class="btn btn-secondary" style="width: 100%;">Salvar Cartão</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+</head>
+<body>
+    <%- include('partials/header', { usuario: usuario }) %>
+    <div class="container orders-section">
+        <h2>Meus Aluguéis</h2>
+
+        <% if (success) { %>
+            <p style="color: green; font-weight: bold;">Seu pedido foi realizado com sucesso!</p>
+        <% } %>
+
+        <% if (pedidos.length > 0) { %>
+            <div class="card-container">
+                <% pedidos.forEach(function(pedido) { %>
+                    <div class="dwarf-card">
+                        <img src="<%= pedido.url_foto || '/images/default-dwarf.png' %>" alt="Foto de <%= pedido.nome %>">
+                        <div class="dwarf-card-content">
+                            <h3><%= pedido.nome %></h3>
+                            <p><strong>Status:</strong> <%= pedido.status %></p>
+                            <p><strong>Início:</strong> <%= new Date(pedido.data_inicio).toLocaleDateString('pt-BR') %></p>
+                            <p><strong>Fim:</strong> <%= new Date(pedido.data_fim).toLocaleDateString('pt-BR') %></p>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <p>Você ainda não alugou nenhum companheiro. Visite a <a href="/dashboard-comprador">taverna</a>!</p>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+</head>
+<body>
+    <%- include('partials/header', { usuario: usuario }) %>
+    <div class="container cart-section">
+        <h2>Meu Carrinho de Tesouros</h2>
+        <% if (carrinho.length > 0) { %>
+            <div class="card-container">
+                <% carrinho.forEach(function(anao) { %>
+                    <div class="dwarf-card">
+                        <img src="<%= anao.url_foto || '/images/default-dwarf.png' %>" alt="Foto de <%= anao.nome %>">
+                        <div class="dwarf-card-content">
+                            <h3><%= anao.nome %></h3>
+                            <p><%= anao.descricao %></p>
+                            <form action="/carrinho/remover/<%= anao.pedido_id %>" method="POST" style="margin-top: 15px;">
+                                <button type="submit" class="btn btn-secondary">Remover do Carrinho</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="/pagamento" class="btn btn-primary">Ir para o Pagamento</a>
+            </div>
+        <% } else { %>
+            <p>Seu carrinho está vazio. Volte para a <a href="/dashboard-comprador">taverna</a> para encontrar um companheiro!</p>
+        <% } %>
+    </div>
+</body>
+</html>

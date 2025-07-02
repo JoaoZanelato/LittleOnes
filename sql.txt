@@ -1,3 +1,5 @@
+create database littledb;
+use littledb;
 -- littledb.anoes definição
 
 CREATE TABLE `anoes` (
@@ -76,20 +78,22 @@ CREATE TABLE `enderecos` (
   CONSTRAINT `enderecos_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 -- littledb.pedidos definição
-
 CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_anao` int(11) NOT NULL,
-  `id_cartao` int(11) NOT NULL,
-  `data_inicio` datetime NOT NULL,
-  `data_fim` datetime NOT NULL,
+  `id_user` int(11) NOT NULL, -- Adicionado
+  `id_cartao` int(11) DEFAULT NULL, -- Pode ser nulo inicialmente
+  `data_inicio` datetime DEFAULT NULL, -- Pode ser nulo inicialmente
+  `data_fim` datetime DEFAULT NULL, -- Pode ser nulo inicialmente
+  `status` varchar(255) NOT NULL DEFAULT 'pendente', -- Adicionado: pendente, confirmado, finalizado
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_anao` (`id_anao`),
   KEY `id_cartao` (`id_cartao`),
+  KEY `id_user` (`id_user`),
   CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_anao`) REFERENCES `anoes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`id_cartao`) REFERENCES `cadastro_cartoes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`id_cartao`) REFERENCES `cadastro_cartoes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `pedidos_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

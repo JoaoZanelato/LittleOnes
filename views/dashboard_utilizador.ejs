@@ -1,27 +1,45 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel='stylesheet' href='/stylesheets/main.css' />
 </head>
 <body>
-<div class="container">
-    <header>
+    <%# Incluindo um cabeçalho que pode ser reutilizado ou pode ser específico aqui %>
+    <header class="container">
         <div class="header-content">
-             <h1>Bem-vindo, <%= usuario.nome %>!</h1>
-            <p>Gerencie seu perfil e disponibilidade.</p>
+             <h1>Painel de Utilizador</h1>
+             <p>Bem-vindo de volta, nobre anão <strong><%= usuario.nome %></strong>! Veja seus colegas disponíveis ou gerencie seu perfil.</p>
         </div>
-        <div class="header-actions">
-            <a href="/perfil" class="btn-primary">Editar Perfil</a>
-            <a href="/logout" class="btn-secondary">Desconectar</a>
+        <div>
+             <a href="/perfil" class="btn btn-primary">Editar Meu Perfil</a>
+             <a href="/logout" class="btn btn-secondary">Sair (Logout)</a>
         </div>
     </header>
 
-    <div style="text-align: center; margin-top: 50px;">
-        <h2>Seu Dashboard</h2>
-        <p>Use o botão "Editar Perfil" para atualizar suas informações e ficar visível para os compradores.</p>
-    </div>
-</div>
+    <main class="container">
+        <section class="dwarves-section">
+            <h2>Companheiros Disponíveis na Taverna</h2>
+            <% if (anoes && anoes.length > 0) { %>
+                <div class="card-container">
+                    <% anoes.forEach(function(anao) { %>
+                        <div class="dwarf-card">
+                            <img src="<%= anao['url-foto'] || '/images/default-dwarf.png' %>" alt="Foto de <%= anao.nome %>">
+                            <div class="dwarf-card-content">
+                                <h3><%= anao.nome %></h3>
+                                <p class="description"><%= anao.descricao || 'Nenhuma descrição fornecida.' %></p>
+                                <p><strong>Idade:</strong> <%= anao.idade || '?' %> anos</p>
+                                <p><strong>Altura:</strong> <%= anao.altura || '?' %> m</p>
+                                <p><strong>Peso:</strong> <%= anao.peso || '?' %> kg</p>
+                                 <%# Para utilizadores, o botão de contratar pode ser desabilitado ou removido %>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <p>Nenhum outro anão disponível no momento. A taverna está vazia!</p>
+            <% } %>
+        </section>
+    </main>
 </body>
 </html>
