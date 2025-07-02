@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/dashboard.css">
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/Dashboard.css' />
 </head>
 <body>
-
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <h1>Bem-vindo! <br>Veja os anões da sua preferência</h1>
-                <p>Desejamos uma ótima experiência com LittleOnes!</p>
-            </div>
-            <div class="header-actions">
-                <a href="/login" class="btn-secondary">Desconectar</a> 
-            </div>
-        </header>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <h1>Dashboard</h1>
+        <p>Anões disponíveis para aluguel</p>
+      </div>
+      <div class="header-actions">
+        <a href="/logout" class="btn-secondary">Desconectar</a>
+      </div>
+    </header>
 
         <section class="dwarves-section">
             <h2>Anões Disponíveis</h2>
@@ -52,7 +49,8 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 LittleOnes. Todos os direitos reservados.</p>
+      <p>&copy; 2025 LittleOnes. Todos os direitos reservados.</p>
     </footer>
+  </div>
 </body>
 </html>
