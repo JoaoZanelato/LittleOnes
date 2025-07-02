@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const pool = require('../config/db'); // Importa a conexão com o banco de dados
 
 // Página inicial
 router.get('/', function(req, res, next) {
@@ -21,13 +22,15 @@ router.get('/pagina', function(req, res) {
   res.render('pagina', { title: 'Página Principal' });
 });
 
-// Página de erro (opcional, normalmente usada para tratamento de erros)
-router.get('/erro', function(req, res) {
-  res.render('error', { message: 'Erro personalizado', error: {} });
-});
-
-router.get('/dashboard', function(req, res) {
-  res.render('dashboard', { title: 'Dashboard' });
+// Rota do Dashboard com SQL puro
+router.get('/dashboard', async function(req, res) {
+  try {
+    const [rows] = await pool.query('SELECT * FROM anoes'); // Executa a consulta SQL
+    res.render('dashboard', { title: 'Dashboard', anoes: rows }); // Passa os resultados para a view
+  } catch (error) {
+    console.error("Erro ao buscar anões:", error);
+    res.render('error', { message: 'Erro ao carregar os dados do dashboard', error: error });
+  }
 });
 
 router.get('/perfil', (req, res, next) =>{

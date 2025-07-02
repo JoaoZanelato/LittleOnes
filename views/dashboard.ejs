@@ -1,58 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/dashboard.css">
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/Dashboard.css' />
 </head>
 <body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <h1>Dashboard</h1>
+        <p>Anões disponíveis para aluguel</p>
+      </div>
+      <div class="header-actions">
+        <a href="/logout" class="btn-secondary">Desconectar</a>
+      </div>
+    </header>
 
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <h1>Bem-vindo! <br>Veja os anões da sua preferência</h1>
-                <p>Desejamos uma ótima experiência com LittleOnes!</p>
+    <main class="dwarves-section">
+      <h2>Nossos Anões</h2>
+      <div class="card-container">
+        <% if (typeof anoes !== 'undefined' && anoes.length > 0) { %>
+          <% anoes.forEach(function(anao) { %>
+            <div class="dwarf-card">
+              <img src="<%= anao['url-foto'] %>" alt="Foto de <%= anao.nome %>">
+              <p><%= anao.nome %></p>
+              <a href="/perfil/<%= anao.id %>" class="btn-primary">Ver Perfil</a>
             </div>
-            <div class="header-actions">
-                <a href="/login" class="btn-secondary">Desconectar</a> 
-            </div>
-        </header>
-
-        <section class="dwarves-section">
-            <h2>Anões Disponíveis</h2>
-            <div class="card-container">
-                <div class="dwarf-card">
-                    <img src="/images/anao1.png" alt="Anão 1">
-                    <p>Thorin Escudo de Carvalho</p>
-                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
-                <div class="dwarf-card">
-                    <img src="/images/anao2.png" alt="Anão 2">
-                    <p>Gimli Filho de Glóin</p>
-                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
-                <div class="dwarf-card">
-                    <img src="https://via.placeholder.com/180x180?text=An%C3%A3o+3" alt="Anão 3">
-                    <p>Balin, Senhor de Moria</p>
-                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
-                <div class="dwarf-card">
-                    <img src="https://via.placeholder.com/180x180?text=An%C3%A3o+4" alt="Anão 4">
-                    <p>Kili, Filho de Dís</p>
-                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
-                <div class="dwarf-card">
-                    <img src="https://via.placeholder.com/180x180?text=An%C3%A3o+5" alt="Anão 5">
-                    <p>Fili, Filho de Dís</p>
-                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
-                <div class="dwarf-card">
-                    <img src="https://via.placeholder.com/180x180?text=An%C3%A3o+6" alt="Anão 6">
-                    <p>Dwalin, o Anão</p>
-                    <a href="/perfil" class="btn-primary">Ver Perfil</a> </div>
-                </div>
-        </section>
-    </div>
+          <% }); %>
+        <% } else { %>
+          <p>Nenhum anão encontrado.</p>
+        <% } %>
+      </div>
+    </main>
 
     <footer>
-        <p>&copy; 2025 LittleOnes. Todos os direitos reservados.</p>
+      <p>&copy; 2025 LittleOnes. Todos os direitos reservados.</p>
     </footer>
+  </div>
 </body>
 </html>
