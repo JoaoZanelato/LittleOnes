@@ -1,28 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title><%= title %></title>
-  <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Bem-vindo. Veja os anões da sua preferência</h1>
-    <p>Desejamos uma ótima experiência com LittleOnes!</p>
-    <h2>Anões</h2>
-  
-    <div class="card-container">
-      <div class="dwarf-card">
-        <img src="/images/anao1.png" alt="Anão 1">
-        <p>Thorin Escudo de Carvalho</p>
-      </div>
-      <div class="dwarf-card">
-        <img src="/images/anao2.png" alt="Anão 2">
-        <p>Gimli Filho de Glóin</p>
-      </div>
+
+    <div class="container">
+        <header>
+            <h1>Bem-vindo! <br>Veja os anões da sua preferência</h1>
+            <p>Desejamos uma ótima experiência com LittleOnes!</p>
+        </header>
+
+        <section class="dwarves-section">
+            <h2>Anões Disponíveis</h2>
+            <div class="card-container">
+                <div class="dwarf-card">
+                    <img src="/images/anao1.png" alt="Anão 1">
+                    <p>Thorin Escudo de Carvalho</p>
+                    <button class="btn-primary">Ver Perfil</button>
+                </div>
+                <div class="dwarf-card">
+                    <img src="/images/anao2.png" alt="Anão 2">
+                    <p>Gimli Filho de Glóin</p>
+                    <button class="btn-primary">Ver Perfil</button>
+                </div>
+                <div class="dwarf-card">
+                    <img src="https://via.placeholder.com/180x180?text=An%C3%A3o+3" alt="Anão 3">
+                    <p>Balin, Senhor de Moria</p>
+                    <button class="btn-primary">Ver Perfil</button>
+                </div>
+                <div class="dwarf-card">
+                    <img src="https://via.placeholder.com/180x180?text=An%C3%A3o+4" alt="Anão 4">
+                    <p>Kili, Filho de Dís</p>
+                    <button class="btn-primary">Ver Perfil</button>
+                </div>
+            </div>
+        </section>
     </div>
-  
+
     <footer>
-      <p>&copy; 2025 LittleOnes. Todos os direitos reservados.</p>
+        <p>&copy; 2025 LittleOnes. Todos os direitos reservados.</p>
     </footer>
-  </body>
+</body>
 </html>

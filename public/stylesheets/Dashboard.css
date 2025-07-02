@@ -1,110 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #FFF5F5; /* Um tom de vermelho bem claro, quase branco rosado */
-    color: #333;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 20px;
+    background-color: #f3e9d2; /* Um tom de pergaminho */
+    color: #3d2b1f; /* Marrom escuro */
+    line-height: 1.6;
 }
 
 .container {
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 1100px;
+    margin: 30px auto;
     padding: 20px;
+}
+
+header {
     text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #c6b8a3; /* Fundo de pedra clara */
+    border: 2px solid #5a3d2b;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-h1 {
-    color: #B71C1C; /* Um vermelho forte para o título principal */
-    border-bottom: 2px solid #FFCDD2; /* Um vermelho mais claro para a borda do título */
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+header h1 {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 3.5em;
+    color: #5a3d2b; /* Marrom mais escuro */
+    margin: 0 0 10px 0;
+    line-height: 1.1;
+    text-shadow: 2px 2px #d3c5b4;
 }
 
-.container p {
+header p {
+    font-size: 1.2em;
+    color: #3d2b1f;
+    margin-top: 10px;
+}
+
+.dwarves-section {
+    background-color: #800000; /* Vermelho escuro/vinho */
+    color: #f3e9d2; /* Cor de pergaminho */
+    margin-top: 20px;
+    border-radius: 8px;
+    padding: 30px;
+    border: 2px solid #5a3d2b;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.dwarves-section h2 {
+    font-family: 'MedievalSharp', cursive;
     text-align: center;
-    margin-bottom: 30px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-h2 {
-    color: #D32F2F; /* Um vermelho ligeiramente mais suave para subtítulos */
-    margin-top: 30px;
-}
-
-ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-ul li {
-    background-color: #ffffff; /* Fundo branco para os itens da lista */
-    margin: 8px 0;
-    padding: 10px 15px;
-    border: 1px solid #EF9A9A; /* Borda vermelha clara para os itens da lista */
-    border-radius: 6px;
-    transition: background-color 0.3s;
-}
-
-ul li:hover {
-    background-color: #FFEBEE; /* Um tom de vermelho bem claro ao passar o mouse */
-}
-
-a {
-    color: #C62828; /* Um vermelho vibrante para links */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+    font-size: 2.8em;
+    margin-top: 0;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px #000;
+    color: #ffd700; /* Dourado para o título principal da seção */
 }
 
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsivo, com mínimo de 200px */
+    gap: 30px;
+    justify-content: center; /* Centraliza os cartões quando há espaço extra */
 }
 
 .dwarf-card {
-    background-color: #fff; /* Fundo branco para os cartões */
-    border: 1px solid #EF9A9A; /* Borda vermelha clara para os cartões */
-    border-radius: 8px;
-    width: 180px;
+    background-color: #c6b8a3; /* Fundo de pedra clara */
+    border: 3px solid #5a3d2b; /* Borda mais robusta */
+    border-radius: 12px; /* Bordas mais arredondadas */
     text-align: center;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding-bottom: 20px; /* Espaço para o botão */
 }
 
 .dwarf-card:hover {
-    transform: scale(1.03);
+    transform: translateY(-8px); /* Efeito de "levantar" no hover */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 }
 
 .dwarf-card img {
     width: 100%;
-    height: auto;
-    border-bottom: 1px solid #EF9A9A; /* Borda inferior vermelha clara para a imagem do cartão */
+    height: 200px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    border-bottom: 3px solid #5a3d2b; /* Borda inferior mais robusta */
     border-radius: 8px 8px 0 0;
 }
 
 .dwarf-card p {
-    padding: 10px;
+    font-family: 'MedievalSharp', cursive; /* Nome do anão com a fonte medieval */
+    padding: 15px 10px;
     margin: 0;
-    color: #B71C1C; /* Vermelho forte para o texto dentro do cartão */
+    color: #800000; /* Vermelho escuro para o nome */
     font-weight: bold;
+    font-size: 1.5em;
+    text-shadow: 1px 1px #f3e9d2;
+}
+
+/* Estilo para os botões, reutilizando as classes da primeira página */
+.btn-primary {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    border: 2px solid #5a3d2b;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: #800000; /* Vermelho escuro/vinho */
+    color: #fff;
+    margin-top: 15px;
+}
+.btn-primary:hover {
+    background-color: #a00000;
+    transform: translateY(-2px);
 }
 
 footer {
-    background-color: #FFCDD2; /* Fundo vermelho claro para o rodapé */
+    background-color: #5a3d2b; /* Marrom escuro para o rodapé */
     text-align: center;
-    padding: 15px 0;
+    padding: 20px 0;
     margin-top: 40px;
-    font-size: 0.9em;
-    color: #555;
-    border-top: 1px solid #EF9A9A; /* Borda superior vermelha clara para o rodapé */
+    font-size: 1em;
+    color: #f3e9d2; /* Cor de pergaminho para o texto do rodapé */
+    border-top: 2px solid #8b4513; /* Borda superior mais robusta */
+    border-radius: 8px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
 }
