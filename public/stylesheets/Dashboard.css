@@ -15,13 +15,29 @@ body {
 }
 
 header {
-    text-align: center;
+    /* Ajustes para posicionar o botão de logout */
+    display: flex;
+    justify-content: space-between; /* Empurra o conteúdo para as extremidades */
+    align-items: flex-start; /* Alinha o topo dos elementos */
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    
     margin-bottom: 40px;
     padding: 20px;
     background-color: #c6b8a3; /* Fundo de pedra clara */
     border: 2px solid #5a3d2b;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.header-content {
+    flex-grow: 1; /* Permite que o conteúdo principal ocupe o máximo de espaço */
+    text-align: center; /* Centraliza o texto */
+    margin-right: 20px; /* Espaço entre o conteúdo e o botão */
+}
+
+.header-actions {
+    margin-left: auto; /* Empurra o botão para a direita */
+    padding-top: 10px; /* Alinha o botão um pouco para baixo com o texto */
 }
 
 header h1 {
@@ -62,33 +78,30 @@ header p {
 
 .card-container {
     display: grid;
-    /* Força 2 colunas com tamanho igual */
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px; /* Espaçamento entre os cards */
-    padding: 0 20px; /* Adiciona um pouco de padding nas laterais dentro da seção vermelha */
-    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+    gap: 30px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .dwarf-card {
     background-color: #c6b8a3; /* Fundo de pedra clara */
     border: 3px solid #5a3d2b; /* Borda mais robusta */
-    border-radius: 12px; /* Bordas mais arredondadas */
+    border-radius: 12px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0,0,0,0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding-bottom: 20px; /* Espaço para o botão */
-    /* Remove a largura fixa do cartão, ele será determinado pelo grid */
-    /* width: 180px;  - Removido */
+    padding-bottom: 20px;
 }
 
 .dwarf-card:hover {
-    transform: translateY(-8px); /* Efeito de "levantar" no hover */
+    transform: translateY(-8px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 }
 
 .dwarf-card img {
     width: 100%;
-    height: 250px; /* Aumentei um pouco a altura para preencher melhor */
+    height: 250px;
     object-fit: cover;
     border-bottom: 3px solid #5a3d2b;
     border-radius: 8px 8px 0 0;
@@ -104,7 +117,7 @@ header p {
     text-shadow: 1px 1px #f3e9d2;
 }
 
-/* Estilo para os botões, reutilizando as classes da primeira página */
+/* Estilo para os botões */
 .btn-primary {
     font-family: 'MedievalSharp', cursive;
     font-size: 1.1em;
@@ -117,11 +130,35 @@ header p {
     background-color: #800000; /* Vermelho escuro/vinho */
     color: #fff;
     margin-top: 15px;
+    text-decoration: none; /* Remove sublinhado padrão do <a> */
+    display: inline-block; /* Permite padding e margin adequados */
 }
 .btn-primary:hover {
     background-color: #a00000;
     transform: translateY(-2px);
 }
+
+/* Estilo para o botão secundário (Desconectar) */
+.btn-secondary {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    border: 2px solid #5a3d2b;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: transparent; /* Fundo transparente */
+    color: #5a3d2b; /* Cor do texto marrom escuro */
+    font-weight: bold;
+    text-decoration: none; /* Remove sublinhado padrão do <a> */
+    display: inline-block; /* Permite padding e margin adequados */
+}
+.btn-secondary:hover {
+    background-color: rgba(90, 61, 43, 0.1); /* Um leve fundo ao passar o mouse */
+    transform: translateY(-2px);
+}
+
 
 footer {
     background-color: #5a3d2b; /* Marrom escuro para o rodapé */
@@ -135,11 +172,27 @@ footer {
     box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
 }
 
-/* Responsividade para telas menores */
+/* Responsividade */
 @media (max-width: 768px) {
     .card-container {
-        grid-template-columns: 1fr; /* Em telas menores, uma coluna */
+        grid-template-columns: 1fr;
         padding: 0 10px;
+    }
+
+    header {
+        flex-direction: column; /* Empilha os itens do header */
+        align-items: center; /* Centraliza-os */
+        text-align: center;
+    }
+
+    .header-content {
+        margin-right: 0;
+        margin-bottom: 20px; /* Espaço entre o conteúdo e o botão empilhado */
+    }
+
+    .header-actions {
+        margin-left: 0;
+        padding-top: 0;
     }
 
     header h1 {
@@ -163,5 +216,10 @@ footer {
     .container {
         margin: 15px auto;
         padding: 10px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        font-size: 1em; /* Reduz o tamanho do botão para telas pequenas */
+        padding: 8px 15px;
     }
 }
