@@ -1,0 +1,15 @@
+const path = require('path');
+
+module.exports = {
+  // Caminho para o arquivo de configuração do banco de dados
+  'config': path.resolve('config', 'config.json'),
+
+  // Caminho para a pasta de Models
+  'models-path': path.resolve('models'),
+
+  // Caminho para a pasta de Seeders (geralmente não usado no começo)
+  'seeders-path': path.resolve('seeders'),
+
+  // Caminho para a pasta de Migrations
+  'migrations-path': path.resolve('migrations')
+};
