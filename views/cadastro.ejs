@@ -2,223 +2,42 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso à Guilda - LittleOnes</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;700&display=swap');
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f3e9d2; /* Tom de pergaminho */
-            color: #3d2b1f; /* Marrom escuro */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" opacity="0.05" xmlns="http://www.w3.org/2000/svg"><path d="M43.25 82.75L2.5 42L11 33.5L43.25 65.75L84.5 24.5L93 33L43.25 82.75Z" stroke="%235a3d2b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>');
-        }
-        
-        .auth-container {
-            width: 100%;
-            max-width: 450px;
-            padding: 20px;
-        }
-
-        .form-wrapper {
-            background-color: #c6b8a3;
-            padding: 40px;
-            border: 2px solid #5a3d2b;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-
-        .form-wrapper h2 {
-            font-family: 'MedievalSharp', cursive;
-            font-size: 2.5em;
-            color: #5a3d2b;
-            margin-top: 0;
-            margin-bottom: 30px;
-        }
-        
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        
-        /* NOVO: Wrapper para posicionar o ícone */
-        .password-wrapper {
-            position: relative;
-            width: 100%;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #8b4513;
-            border-radius: 5px;
-            background-color: #f3e9d2;
-            font-size: 1em;
-            box-sizing: border-box;
-        }
-        
-        /* NOVO: Ajuste no padding do input de senha para não sobrepor o ícone */
-        .input-group input[type="password"], .input-group input[type="text"]#login-password, .input-group input[type="text"]#register-password {
-             padding-right: 45px;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #5a3d2b;
-            box-shadow: 0 0 10px rgba(90, 61, 43, 0.3);
-        }
-
-        /* NOVO: Estilos para o ícone de ver senha */
-        .toggle-password {
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #5a3d2b;
-        }
-
-        .auth-button {
-            font-family: 'MedievalSharp', cursive;
-            width: 100%;
-            font-size: 1.4em;
-            padding: 12px;
-            border: 2px solid #5a3d2b;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background-color: #800000;
-            color: #fff;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .auth-button:hover {
-            background-color: #a00000;
-        }
-        
-        .toggle-form {
-            cursor: pointer;
-            color: #5a3d2b;
-            text-decoration: underline;
-            font-weight: bold;
-        }
-    </style>
+    <title>Cadastro e Login</title>
+    <link rel="stylesheet" href="/stylesheets/Dashboard.css">
 </head>
 <body>
-    <div class="auth-container">
-        <div class="form-wrapper">
+<div class="container">
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
 
-            <div id="login-form">
-                <h2>Entrar na Guilda</h2>
-                <form>
-                    <div class="input-group">
-                        <label for="login-user">Nome de Usuário ou Email</label>
-                        <input type="text" id="login-user" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="login-password">Senha Secreta</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="login-password" required>
-                            <span class="toggle-password" id="toggle-login-password">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                                  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                                </svg>
-                            </span>
-                        </div>
-                    </div>
-                    <button type="submit" class="auth-button">Entrar</button>
-                    <p>Não tem uma conta? <span id="show-register" class="toggle-form">Junte-se à aventura!</span></p>
-                </form>
-            </div>
+        <div style="flex: 1; min-width: 300px; margin: 20px;">
+            <h2>Cadastro</h2>
+            <form action="/cadastro" method="POST">
+                <input type="text" name="nome" placeholder="Nome Completo" required><br><br>
+                <input type="email" name="email" placeholder="Email" required><br><br>
+                <input type="password" name="senha" placeholder="Senha" required><br><br>
+                <input type="text" name="cpf" placeholder="CPF" required><br><br>
+                <input type="text" name="telefone" placeholder="Telefone"><br><br>
+                <select name="cliente_ou_utilizador" required>
+                    <option value="" disabled selected>Selecione o tipo de conta</option>
+                    <option value="comprador">Quero alugar (Comprador)</option>
+                    <option value="utilizador">Quero ser alugado (Utilizador)</option>
+                </select><br><br>
+                <button type="submit" class="btn-primary">Cadastrar</button>
+            </form>
+        </div>
 
-            <div id="register-form" style="display: none;">
-                <h2>Criar Personagem</h2>
-                <form>
-                    <div class="input-group">
-                        <label for="register-user">Nome de Aventureiro</label>
-                        <input type="text" id="register-user" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="register-email">Email</label>
-                        <input type="email" id="register-email" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="register-password">Crie sua Senha</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="register-password" required>
-                            <span class="toggle-password" id="toggle-register-password">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                                  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                                </svg>
-                            </span>
-                        </div>
-                    </div>
-                    <button type="submit" class="auth-button">Criar Conta</button>
-                    <p>Já faz parte da guilda? <span id="show-login" class="toggle-form">Faça o login.</span></p>
-                </form>
-            </div>
-
+        <div style="flex: 1; min-width: 300px; margin: 20px;">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <input type="email" name="email" placeholder="Email" required><br><br>
+                <input type="password" name="senha" placeholder="Senha" required><br><br>
+                <% if (error) { %>
+                    <p style="color: red;"><%= error %></p>
+                <% } %>
+                <button type="submit" class="btn-primary">Entrar</button>
+            </form>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginForm = document.getElementById('login-form');
-            const registerForm = document.getElementById('register-form');
-            const showRegisterLink = document.getElementById('show-register');
-            const showLoginLink = document.getElementById('show-login');
-
-            showRegisterLink.addEventListener('click', () => {
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
-            });
-
-            showLoginLink.addEventListener('click', () => {
-                registerForm.style.display = 'none';
-                loginForm.style.display = 'block';
-            });
-            
-            // --- NOVO: LÓGICA PARA MOSTRAR/ESCONDER A SENHA ---
-
-            // Ícones de olho aberto e cortado (SVG)
-            const eyeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>`;
-            const eyeSlashIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16"><path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/><path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/></svg>`;
-
-            function setupPasswordToggle(inputId, toggleId) {
-                const passwordInput = document.getElementById(inputId);
-                const togglePassword = document.getElementById(toggleId);
-
-                togglePassword.addEventListener('click', function () {
-                    // Alterna o tipo do input
-                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                    passwordInput.setAttribute('type', type);
-                    
-                    // Alterna o ícone
-                    this.innerHTML = type === 'password' ? eyeIcon : eyeSlashIcon;
-                });
-            }
-
-            // Aplica a funcionalidade para ambos os formulários
-            setupPasswordToggle('login-password', 'toggle-login-password');
-            setupPasswordToggle('register-password', 'toggle-register-password');
-        });
-    </script>
-
+</div>
 </body>
 </html>

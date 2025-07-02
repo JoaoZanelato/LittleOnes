@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/Dashboard.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="header-content">
+             <h1>Bem-vindo, <%= usuario.nome %>!</h1>
+            <p>Gerencie seu perfil e disponibilidade.</p>
+        </div>
+        <div class="header-actions">
+            <a href="/perfil" class="btn-primary">Editar Perfil</a>
+            <a href="/logout" class="btn-secondary">Desconectar</a>
+        </div>
+    </header>
+
+    <div style="text-align: center; margin-top: 50px;">
+        <h2>Seu Dashboard</h2>
+        <p>Use o botão "Editar Perfil" para atualizar suas informações e ficar visível para os compradores.</p>
+    </div>
+</div>
+</body>
+</html>

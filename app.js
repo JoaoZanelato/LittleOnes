@@ -20,6 +20,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
+var session = require('express-session');
+
+app.use(session({
+  secret: 'sua-chave-secreta-aqui', // Troque por uma chave secreta real
+  resave: false,
+  saveUninitialized: true
+}));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

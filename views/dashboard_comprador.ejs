@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/Dashboard.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="header-content">
+            <h1>Bem-vindo, <%= usuario.nome %>!</h1>
+            <p>Escolha um de nossos anões para sua próxima aventura.</p>
+        </div>
+        <div class="header-actions">
+            <a href="#" class="btn-secondary">🛒 Carrinho</a>
+            <a href="/logout" class="btn-secondary">Desconectar</a>
+        </div>
+    </header>
+
+    <section class="dwarves-section">
+        <h2>Anões Disponíveis para Aluguel</h2>
+        <div class="card-container">
+            <% anoes.forEach(anao => { %>
+                <div class="dwarf-card">
+                    <img src="<%= anao['url-foto'] || 'https://via.placeholder.com/300' %>" alt="Foto de <%= anao.nome %>">
+                    <p><%= anao.nome %></p>
+                    <a href="#" class="btn-primary">Adicionar ao Carrinho</a>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+</div>
+</body>
+</html>
